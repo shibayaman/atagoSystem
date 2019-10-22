@@ -18,9 +18,9 @@ ENV COMPOSER_HOME /composer
 
 ENV PATH $PATH:/composer/vendor/bin
 
-# RUN cd /var/www \
-#   && composer install
+# RUN composer global require "laravel/installer"
 
-WORKDIR /var/www
+RUN cd /var/www/atagoSystem \
+  && composer install
 
-RUN composer global require "laravel/installer"
+WORKDIR /var/www/atagoSystem
