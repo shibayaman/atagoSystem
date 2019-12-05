@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/PurchaseHistory', function () {
+    return view('PurchaseHistory');
+});
+
+Route::get('/foo', 'PurchaseHistoryController@get');
