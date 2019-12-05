@@ -1,0 +1,18 @@
+.foo .table_purchase_history {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.foo a.sample img {
+  width: 70px;
+}
+
+.foo p.sample3 {
+  padding: 10px;
+  border: medium solid #535353;
+}
+
+.foo .red {
+  color: crimson;
+}
+
