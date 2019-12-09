@@ -14,7 +14,7 @@ class CreateKKanrisTable extends Migration
     public function up()
     {
         Schema::create('k_kanris', function (Blueprint $table) {
-            $table->increments('CATEGORY_NUMBER',10)-->unique();
+            $table->increments('CATEGORY_NUMBER',10)->unique();
             $table->string('CATEGORY_NAME',100);
         });
     }

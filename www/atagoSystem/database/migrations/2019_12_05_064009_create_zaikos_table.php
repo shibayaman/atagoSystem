@@ -14,7 +14,7 @@ class CreateZaikosTable extends Migration
     public function up()
     {
         Schema::create('zaikos', function (Blueprint $table) {
-            $table->increments('ITEM_NUMBER',10)--unique();
+            $table->increments('ITEM_NUMBER',10)-unique();
             $table->integer('STOCK',3);
         });
     }
