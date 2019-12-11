@@ -12,4 +12,6 @@ const mix = require('laravel-mix');
  */
 
 mix.react('resources/js/purchasehistory.js', 'public/js')
-   .sass('resources/sass/purchasehistory.scss', 'public/css');
+   .react('resources/js/cart.js', 'public/js')
+   .sass('resources/sass/purchasehistory.scss', 'public/css')
+   .sass('resources/sass/cart.scss', 'public/css');

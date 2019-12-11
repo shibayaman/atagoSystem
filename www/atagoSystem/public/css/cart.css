@@ -1,0 +1,35 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+.cart .item {
+  border-top: 1px solid gray;
+  overflow: hidden;
+}
+
+.cart .item:last-child {
+  border-bottom: 1px solid gray;
+}
+
+.cart .item .item-img-container {
+  display: inline-block;
+}
+
+.cart .item .item-img-container img {
+  width: 180px;
+  height: 180px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+.cart .item .item-desc-container {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.cart .item .item-desc-container .item-price {
+  color: #bb3535;
+}
+

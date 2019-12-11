@@ -20,3 +20,19 @@ Route::get('/PurchaseHistory', function () {
 });
 
 Route::get('/foo', 'PurchaseHistoryController@get');
+
+Route::get('/purchase/cart', 'PurchaseController@showCart');
+
+Route::get('/purchase/info-form', 'PurchaseController@showForm');
+
+Route::get('/puchase/info-confirm', 'PurchaseController@showConfirm');
+
+Route::get('/purchase/completed', 'PurchaseController@showCompleted');
+
+Route::get('/purchase/api/cart', 'PurchaseController@getCart');
+
+Route::post('/purchase/api/cart', 'PurchaseController@updateCart');
+
+Route::get('/purchase/api/order', 'PurchaseController@getOrder');
+
+Route::get('/purchase/api/order-detail', 'PurchaseController@getDetail');

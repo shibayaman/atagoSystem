@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateZaikosTable extends Migration
+class CreateCartsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateZaikosTable extends Migration
      */
     public function up()
     {
-        Schema::create('zaikos', function (Blueprint $table) {
-            $table->increments('ITEM_NUMBER',10)->unique();
-            $table->integer('STOCK');
+        Schema::create('carts', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->bigInteger('customer_id');
+            $table->bigInteger('product_id');
+            $table->unsignedInteger('amount');
         });
     }
 
@@ -26,6 +28,6 @@ class CreateZaikosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('zaikos');
+        Schema::dropIfExists('carts');
     }
 }

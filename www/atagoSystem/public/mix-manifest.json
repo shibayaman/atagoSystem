@@ -1,4 +1,6 @@
 {
+    "/js/cart.js": "/js/cart.js",
     "/js/purchasehistory.js": "/js/purchasehistory.js",
-    "/css/purchasehistory.css": "/css/purchasehistory.css"
+    "/css/purchasehistory.css": "/css/purchasehistory.css",
+    "/css/cart.css": "/css/cart.css"
 }
