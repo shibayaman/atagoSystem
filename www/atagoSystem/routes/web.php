@@ -11,6 +11,21 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::match(['get','post'],'/', function () {
+    return view('main');
 });
+
+Route::match(['get','post'],'/accountresister', function () {
+    return view('accountresister');
+});
+
+Route::match(['get','post'],'/complete', function(){
+    return view('complete');
+});
+
+Route::match(['get','post'],'/newaccount', 'account_resister_Controller@store')->name('newaccount');
+
+
+// Auth::routes();
+
+// Route::get('/home', 'HomeController@index')->name('home');
