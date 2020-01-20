@@ -24,7 +24,7 @@ export default function Main() {
 
                 <p><a href="/">トップに戻る</a></p>
 
-                <p><a href="/">ログイン</a></p>
+                <p><a href="/accountlogin">ログイン</a></p>
 
                 
             </div>

@@ -12,20 +12,44 @@
 */
 
 Route::match(['get','post'],'/', function () {
-    return view('main');
+
+    if(Auth::check()){
+        $user = \Auth::user()->username;
+        $ifLogin = "ログアウト";
+        $link = "/logout";
+        return view('main',compact("user","ifLogin","link"));
+    }else {
+        $ifLogin = "ログイン";
+        $link = "/accountlogin";
+        $user = "";
+        return view('main',compact("user","ifLogin","link"));
+
+    }
 });
 
-Route::match(['get','post'],'/accountresister', function () {
+Route::get('/accountedit', function () {
+
+    $user = \Auth::user();
+    return view('accountedit',compact("user"));
+});
+
+Route::get('/accountresister', function () {
     return view('accountresister');
 });
 
-Route::match(['get','post'],'/complete', function(){
+Route::get('/complete', function(){
     return view('complete');
 });
 
-Route::match(['get','post'],'/newaccount', 'account_resister_Controller@store')->name('newaccount');
+Route::post('/newaccount', 'account_resister_Controller@store')->name('newaccount');
+
+Route::get('/accountlogin', function(){
+    return view('accountlogin');
+});
 
 
-// Auth::routes();
+Route::get('/logout','account_resister_Controller@getLogout');
+
+Auth::routes(['register' => false,'confirm' =>false,'verify' => false]);
 
 // Route::get('/home', 'HomeController@index')->name('home');

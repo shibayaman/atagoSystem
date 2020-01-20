@@ -121,12 +121,13 @@
     </head>
     <body>
         
-        <div id = "accountresister-example"></div>
+        <div id = "accountedit-example"></div>
 
         <script>
             
             
-            var name = @json($errors->first('username'));
+            var id = @json($user->id);
+            var name = @json($user->usename);
             var kana = @json($errors->first('kana_name'));
             var mail = @json($errors->first('email'));
             var mail2 = @json($errors->first('email2'));
@@ -138,24 +139,7 @@
             var kiyaku = @json($errors->first('kiyaku'));
 
 
-           var oldname = @json(old('username'));
-           var oldkana = @json(old('kana_name'));
-           var oldmail = @json(old('email'));
-           var oldmail2 = @json(old('email2'));
-           var oldzip = @json(old('address_number'));
-           var oldpref = @json(old('address1'));
-           var oldcity = @json(old('address2'));
-           var oldother = @json(old('address3'));
-           var oldphone = @json(old('phone_number'));
-           var oldphone2 = @json(old('urgent_phone_number'));
-
-
-
-            $(function(){
-                $('.auto-search').click(function(){
-                    AjaxZip3.zip2addr('address_number','','address1','address2');
-                });
-            });
+           
        </script>
 
         <script src="{{asset('/js/accountapp.js')}}"></script>

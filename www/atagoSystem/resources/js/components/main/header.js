@@ -11,7 +11,7 @@ export default function Header() {
             <header className="search-header">
 
                 
-                <a href="/" id="logo"><img src="../images/atagonlogo.png" height="30px"></img></a>
+                <a href="/" id="logo"><img src="../images/atagonlogo.png" height="40px"></img></a>
                 
                 
                 <form action="/" method="post" className="search-form" encType="multipart/form-data">
@@ -28,7 +28,7 @@ export default function Header() {
 
                     <input type="text" id="search-text" placeholder="検索したい文字列を入力"></input>
 
-                    <button type="submit" id="sub">検索</button>
+                    <button type="submit" id="sub" >検索</button>
 
                     
                 </form>
@@ -38,12 +38,16 @@ export default function Header() {
                         <li className="ul-style">アカウント
                             <ul className="sub-list triangle">
                                 <li><a href="/accountresister">アカウントを作成する</a></li>
-                                <li><a href="#">ログイン</a></li>
+                                <li><a href="/accountedit">アカウント情報を変更する</a></li>
+                                <li><a href={linktext}>{login}</a></li>
                             </ul>
                         </li>
                     </ul>  
                 </div>
                 
+                <div><a href=""></a></div>
+
+                <div className="loginName"><font color="red">{name}</font></div>
             </header>
         
         </div>

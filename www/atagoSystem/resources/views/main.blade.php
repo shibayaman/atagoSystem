@@ -43,7 +43,7 @@
                top:15px;
                height:40px;
                width:60%;
-               left:150px;
+               left:190px;
                
            }
 
@@ -140,7 +140,15 @@
                _border-color: #000000 #000000 #73b44a #000000;
                _filter:progid:DXImageTransform.Microsoft.Chroma(color='#000000');
            }
+           
+           .loginName {
 
+               position:absolute;
+               top:90px;
+               left:30px;
+               font-weight:bold;
+               font-size:30px;
+           }
         </style>
 
           <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -151,9 +159,12 @@
 
         <div id = "main"></div>
        
- <script src="{{asset('/js/accountapp.js')}}"></script>
-
         <script type="text/javascript">
+            
+            var name = @json($user);
+            var login = @json($ifLogin);
+            var linktext = @json($link);
+
 
             $(function(){
                 $("#account-list li").hover(function(){
@@ -163,8 +174,16 @@
                     $("ul",this).hide();
                 });
             });
-        
+
+
         </script>
+
+
+        <script src="{{asset('/js/accountapp.js')}}"></script>
+
+                
         
+        
+
     </body>
 </html>

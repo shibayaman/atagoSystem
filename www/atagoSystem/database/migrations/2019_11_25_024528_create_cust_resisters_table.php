@@ -14,18 +14,18 @@ class CreateCustResistersTable extends Migration
     public function up()
     {
         Schema::create('cust_resisters', function (Blueprint $table) {
-            $table->bigIncrements('cust_id',8);
-            $table->string('cust_name',20);
-            $table->string('cust_kana_name',20);
-            $table->string('password',20)->unique();
-            $table->string('mail_address')->unique();
-            $table->string('mail_address2')->unique()->nullable();
+            $table->bigIncrements('id',8);
+            $table->string('username',20);
+            $table->string('kana_name',20);
+            $table->string('password')->unique();
+            $table->string('email')->unique();
+            $table->string('email2')->unique()->nullable();
             $table->integer('address_number');
             $table->string('address1');
             $table->string('address2');
             $table->string('address3');
-            $table->integer('phone_number')->unique();
-            $table->integer('urgent_phone_number')->unique()->nullable();
+            $table->string('phone_number')->unique();
+            $table->string('urgent_phone_number')->unique()->nullable();
             $table->boolean('atagon_flg')->default(false);
             $table->timestamps();
         });

@@ -19,8 +19,10 @@ export default function Main() {
             
             <div className="account">
 
-                <h1>アカウントを作成</h1>
+                <h1>アカウント情報</h1>
                 <hr></hr><br></br>
+
+                <h1>ユーザID　:　{id}</h1>
                 
                 <form action="newaccount" method="post" className="account-form" encType="multipart/form-data">
                     
@@ -44,21 +46,21 @@ export default function Main() {
                     <hr></hr><br></br>
 
                     <div className="required"><font color="white">必須</font></div>
-                    <div className="input-component"><label>　　　　　　　郵便番号　：</label>　<input type="text" placeholder="5360015" className="address-number" size="8" maxLength="7" name="address_number" value={oldzip} required autoComplete="address_number"></input>　<button className="auto-search">住所検索</button></div><br></br>
+                    <div className="input-component"><label>　　　　　　　郵便番号　：</label>　<input type="text" placeholder="5360015" className="address-number" size="8" maxLength="7" name="address_number" value={oldzip} required autoComplete="address_number" ></input>　<button className="auto-search">住所検索</button></div><br></br>
                     <p className="vali"><font color="red">{zip}</font></p>
 
                     <div className="input-component"><label>　　　　　　都道府県　：　</label><input type="text" placeholder="大阪府" className="address1" name="address1" value={oldpref} required autoComplete="address1" ></input></div><br></br>
                     <div className="input-component"><label>　　　　　　市区町村　：　</label><input type="text" placeholder="大阪市北区中崎北" className="address2" name="address2" value={oldcity} required autoComplete="address2" ></input></div><br></br>
-                    <div className="input-component"><label>　　　番地以降の住所　：　</label><input type="text" placeholder="2-3-35 ECCコンピュータ専門学校" className="address3" name="address3" value={oldother} required autoComplete="address3" ></input></div><br></br>
+                    <div className="input-component"><label>　　　番地以降の住所　：　</label><input type="text" placeholder="" className="address3" name="address3" value={oldother} required autoComplete="address3" ></input></div><br></br>
                     <hr></hr><br></br>
 
-                    <div><span className="required"><font color="white">必須</font></span><span className="input-component">　　　　　　電話番号　：　<input type="text" className="phone-number" name="phone_number" value={oldphone} required autoComplete="phone_number" placeholder="ハイフンなし入力"></input></span></div><br></br>
+                    <div><span className="required"><font color="white">必須</font></span><span className="input-component">　　　　　　電話番号　：　<input type="text" className="phone-number" name="phone_number" value={oldphone} required autoComplete="phone_number" ></input></span></div><br></br>
                     <p className="vali"><font color="red">{phone}</font></p>
                     
                     <div><span className="any"><font color="black">任意</font></span><span className="input-component">　　　緊急用電話番号　：　<input type="text" className="urgent-phone-number" name="urgent_phone_number" value={oldphone2}></input></span></div><br></br>
                     <p className="vali"><font color="red">{phone2}</font></p>
                     
-                
+                    <div><br></br>例：電話番号が「080-xxx-xxx」の場合、「080xxxxxx」のようにハイフンを取り除いて入力してください</div>
                     <hr></hr><br></br>
 
                     <div><span className="required"><font color="white">必須</font></span><span className="input-component">　　　　　パスワード　：　<input type="password" className="pass" name="password" required autoComplete="password" ></input></span></div><br></br>
