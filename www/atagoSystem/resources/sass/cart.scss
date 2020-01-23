@@ -1,0 +1,35 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+.cart {
+  .item {
+    border-top: 1px solid gray;
+    overflow: hidden;
+
+    &:last-child {
+      border-bottom: 1px solid gray;
+    }
+
+    .item-img-container {
+      display: inline-block;
+
+      img {
+        width: 180px;
+        height: 180px;
+        object-fit: contain;
+      }
+    }
+    
+    .item-desc-container {
+      display: inline-block;
+      vertical-align: top;
+
+      .item-price {
+        color: rgb(187, 53, 53);
+      }
+    }
+  }
+}
