@@ -32815,7 +32815,7 @@ var Cart = function Cart() {
   });
   return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "cart"
-  }, itemList);
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, "\u30AB\u30FC\u30C8"), itemList);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Cart);

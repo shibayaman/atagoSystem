@@ -35,6 +35,7 @@ const Cart = () => {
 
   return(
     <div className="cart">
+      <h1>カート</h1>
       {itemList}
     </div>
   );
