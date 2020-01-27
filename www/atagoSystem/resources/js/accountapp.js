@@ -16,4 +16,3 @@ require('./components/main/main');
 require('./components/accountresister/accountresister-Example');
 require('./components/complete/complete-example');
 require('./components/accountedit/accountedit-Example');
-

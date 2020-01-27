@@ -1,7 +1,112 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-@section('content')
-<div class="container">
+        <title>Laravel</title>
+
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+
+        <!-- Styles -->
+        <style>
+            html, body {
+                background-color: #fff;
+                color: #636b6f;
+                font-family: 'Nunito', sans-serif;
+                font-weight: 200;
+                height: 100vh;
+                margin: 0;
+            }
+
+            .common-header {
+               
+               position:relative;
+               background-color:black;
+               width:100%;
+               height:10em;
+
+           }
+
+           #logo {
+               position:relative;
+               top:15px;
+           }
+
+            .login-title {
+
+                position:absolute;
+                top:30px;
+                font-size:50px;
+                color:white;
+                left:40%;
+
+            }
+
+            .accountlogin-bread ul {
+
+                display:flex;
+                list-style-type:none;
+        
+            }
+
+            .accountlogin-bread li a {
+                padding:5px;
+                color:blue;
+                font-size:16px;
+            }
+
+            .accountlogin-bread li:after {
+                content:'>';
+                margin-left:10px;
+                margin-right:10px;
+                color:black;
+                font-weight:bold;
+            }
+
+            .accountlogin-bread li:last-child:after {
+               content:"";
+            }
+           .common-footer {
+               position:absolute;
+               bottom:0;
+               width:100%;
+               height:5em;
+               background-color:black;
+           }
+        </style>
+
+          <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+          <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
+          
+    </head>
+    <body>
+        
+    <div>
+
+        <header class="common-header">
+
+            <a href="/" id="logo"><img src="../images/atagonlogo.png" height="30px"></img></a>
+            
+            <div class="login-title">ユーザログイン</div>
+
+        </header>
+
+    </div>
+
+    <div class="accountlogin-bread">
+        <ul itemScope itemType="http://data-vocabulary.org/Breadcrumb">
+
+            <li><a href="/" itemProps="url"><span itemProps="title">トップ</span></a></li>
+            <li><span itemProps="title">ユーザログイン</span></li>
+            
+        </ul>
+    </div>
+
+<div class="container" vertical-align="middle">
+
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -80,4 +185,14 @@
 
     </div>
 </div>
-@endsection
+
+
+    <footer class="common-footer">
+        <a href="/emplogin" className="emp" id="emp">企業の方はこちら</a>
+                
+    <footer>
+
+    </body>
+</html>
+
+

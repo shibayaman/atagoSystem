@@ -79,9 +79,10 @@
 
            .common-footer {
                position:relative;
-               background-color:black;
-               max-width:100%;
+               bottom:0;
+               width:100%;
                height:5em;
+               background-color:black;
            }
         </style>
 
@@ -94,6 +95,10 @@
         <div id = "complete-example"></div>
         <script src="{{asset('/js/accountapp.js')}}"></script>
 
-       
+    <footer class="common-footer">
+        <a href="/emplogin" className="emp" id="emp">企業の方はこちら</a>
+                
+    <footer>
+
     </body>
 </html>

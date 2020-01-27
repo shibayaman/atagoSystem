@@ -11,26 +11,21 @@
 |
 */
 
-Route::match(['get','post'],'/', function () {
+Route::get('/','account_resister_Controller@LoginCheck');
 
-    if(Auth::check()){
-        $user = \Auth::user()->username;
-        $ifLogin = "ログアウト";
-        $link = "/logout";
-        return view('main',compact("user","ifLogin","link"));
-    }else {
-        $ifLogin = "ログイン";
-        $link = "/accountlogin";
-        $user = "";
-        return view('main',compact("user","ifLogin","link"));
-
-    }
+Route::get('/emplogin',function(){
+    return view('emplogin');
 });
 
-Route::get('/accountedit', function () {
 
+Route::get('/accountedit',function(){
     $user = \Auth::user();
-    return view('accountedit',compact("user"));
+    return view('accountedit',compact('user'));
+})->middleware('auth');
+
+
+Route::get('/toiawase',function(){
+    return view('toiawase');
 });
 
 Route::get('/accountresister', function () {
@@ -45,7 +40,7 @@ Route::post('/newaccount', 'account_resister_Controller@store')->name('newaccoun
 
 Route::get('/accountlogin', function(){
     return view('accountlogin');
-});
+})->name('accountlogin');
 
 
 Route::get('/logout','account_resister_Controller@getLogout');

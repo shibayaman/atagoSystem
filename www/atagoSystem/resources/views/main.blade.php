@@ -26,7 +26,7 @@
                position:relative;
                background-color:black;
                max-width:100%;
-               height:10em;
+               height:12em;
 
            }
            
@@ -56,7 +56,7 @@
 
            #search-text {
                position:absolute;
-               height:85%;
+               height:100%;
                width:60%;
                
                
@@ -74,12 +74,12 @@
                position:absolute;
                list-style:none;
                left:75%;
-               top:0px;
+               top:15px;
                text-align:center;
                
            }
 
-           .account ul#account-list li:nth-child(3){
+           .account ul#account-list li:nth-child(4){
                 position: relative;
             }
 
@@ -103,13 +103,13 @@
                padding:0px;
                display:none;
                position:absolute;
-               left:-30%;
-               top:50px;
+               left:-50%;
+               top:40px;
            }
 
            .account ul#account-list ul.sub-list li {
                width:250px;
-               height:35px;
+               height:30px;
                border-width:0px 0px 1px 0px;
                border-style:dotted;
                display:block;
@@ -121,7 +121,7 @@
 
            .account ul#account-list ul.sub-list li a {
 
-               line-height:35px;
+               line-height:25px;
 
            }
 
@@ -144,14 +144,69 @@
            .loginName {
 
                position:absolute;
-               top:90px;
+               top:85px;
                left:30px;
                font-weight:bold;
                font-size:30px;
            }
+           
+           .aotodoke {
+
+                position:relative;
+                top:85px;
+                left:30px;
+                font-weight:bold;
+                font-size:15px;
+            }
+
+           .toiawase {
+               position:absolute;
+               font-weight:bold;
+               right:100px;
+               top:15px;
+           }
+
+           .toiawase>a {
+                text-decoration: none ;
+                color:white;
+
+           }
+           
+           .box {
+               position:relative;
+                padding: 0.5em 1em;
+                margin: 2em 0;
+                font-weight: bold;
+                color: #6091d3;/*文字色*/
+                background: #FFF;
+                border: solid 3px #6091d3;/*線*/
+                border-radius: 10px;/*角の丸み*/
+
+                width:10%;
+            }
+
+            .context {
+                position:relative;
+                text-align:center;
+                font-weight:bold;
+            }
+
+            .box>catego {
+                margin: 0; 
+                padding: 0;
+            }
+           .common-footer {
+               position:relative;
+               bottom:0;
+               width:100%;
+               height:5em;
+               background-color:black;
+           }
+
         </style>
 
           <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+          <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
           
     </head>
     <body>
@@ -164,7 +219,8 @@
             var name = @json($user);
             var login = @json($ifLogin);
             var linktext = @json($link);
-
+            var aotodoke = @json($otodoke);
+            var category = @json($item_category);
 
             $(function(){
                 $("#account-list li").hover(function(){
@@ -180,10 +236,52 @@
 
 
         <script src="{{asset('/js/accountapp.js')}}"></script>
+        
+        
+            
+        <div class="box">
+
+            <p class="context">カテゴリ一覧</p>
+            @foreach($item_category as $categories)
+                <p class="catego" name="category"><a href="/?category={{$categories->category_name}}" name="category">{{$categories->category_name}}</a></p>
+            @endforeach
+        </div>
+    
+            
+            <p class="container">  
+
+                <div class="row justify-content-center">
+                    
+                    <table border="1">     
+
+                        <tr>
+
+                        <?php $i = 0; ?>
+                        @foreach($item_list as $items)
+
+                            <?php $i += 1; ?>
+                            <td width="200px"><img src="{{{ $items->item_url }}}"><br><a href="#">{{{ $items->item_name }}}</a></td>
+                                
+                            @if($i % 4 == 0)
+                                </tr><tr>
+                            @endif
+
+                        @endforeach
+                    </table>
+                
+                    
+                </div>
 
                 
+                    
+            </p>
         
-        
+            <div class="row justify-content-center">{{ $item_list->appends(request()->input())->links() }}</div>
+               
+            <footer class="common-footer">
+                <a href="/emplogin" className="emp" id="emp">企業の方はこちら</a>
+                
+            <footer>
 
     </body>
 </html>

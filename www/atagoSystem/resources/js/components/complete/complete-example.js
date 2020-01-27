@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 
 import Header from "../common/commonHeader.js";
 import Main from "./complete-main.js";
-import Footer from "../common/commonFooter.js";
+
+
 
 export default class Example extends Component {
     render() {
@@ -12,8 +13,8 @@ export default class Example extends Component {
                 
                 <Header />
                 <div className="complete-title">登録完了画面</div>
-                <Main />
-                <Footer />
+                <div><Main /></div>
+                
             
             </div>
         );
