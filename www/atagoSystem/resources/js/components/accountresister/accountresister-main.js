@@ -55,7 +55,7 @@ export default function Main() {
                     <div><span className="required"><font color="white">必須</font></span><span className="input-component">　　　　　　電話番号　：　<input type="text" className="phone-number" name="phone_number" value={oldphone} required autoComplete="phone_number" placeholder="ハイフンなし入力"></input></span></div><br></br>
                     <p className="vali"><font color="red">{phone}</font></p>
                     
-                    <div><span className="any"><font color="black">任意</font></span><span className="input-component">　　　緊急用電話番号　：　<input type="text" className="urgent-phone-number" name="urgent_phone_number" value={oldphone2}></input></span></div><br></br>
+                    <div><span className="any"><font color="black">任意</font></span><span className="input-component">　　　緊急時の電話番号　：　<input type="text" className="urgent-phone-number" name="urgent_phone_number" value={oldphone2}></input></span></div><br></br>
                     <p className="vali"><font color="red">{phone2}</font></p>
                     
                 
@@ -71,11 +71,11 @@ export default function Main() {
                     <hr></hr><br></br>
 
                     <div className="kiyaku"><a href="#">利用規約</a></div>
-                    <div>利用規約に同意する<input type="checkbox" className="kiyaku-consented" value="kiyaku" name="kiyaku"></input></div>
+                    <div>利用規約に同意する<input type="checkbox" className="kiyaku-consented" value="kiyaku" name="kiyaku" id="kiyaku"></input></div>
                     <p><font color="red">{kiyaku}</font></p>
                     <br></br><br></br>
 
-                    <div><input type="submit" className="account-sub" value="登録"></input></div>
+                    <div><input type="submit" className="account-sub" id="sub" value="登録"></input></div>
                     
                     <br></br>
 

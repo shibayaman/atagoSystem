@@ -6,6 +6,23 @@ import Main from "./accountresister-main.js";
 
 
 export default class Example extends Component {
+
+    constructor(props){
+        super(props);
+        this.state = {
+            usename: 'fgtj'
+        };
+
+        this.handleChange = this.handleChange.bind(this);
+        
+
+    }
+
+    handleChange(event) {
+        this.setState({usename:event.target.value});
+
+    }
+
     render() {
         return (
             <div>

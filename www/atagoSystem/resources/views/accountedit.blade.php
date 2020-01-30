@@ -11,14 +11,6 @@
 
         <!-- Styles -->
         <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
 
            .common-header {
                
@@ -81,24 +73,32 @@
            .account-view {
                position:absolute;
                left:10%;
-               
-               text-align:center;
            }
 
-
-           .edit {
-               position:relative;
-               right:-30%;
+           .edit-view {
+               position:absolute;
+               align:center;
            }
+
            .account-sub {
 
                background-color:yellow;
+               font-weight:bold;
+               color:black;
+               
+               height:50px;
+               font-size:2em;
+           }
+
+           .account-back {
+
                font-weight:bold;
                color:black;
                max-width:100px;
                height:50px;
                font-size:2em;
            }
+
            .vali {
                position:relative;
                right:-300px;
@@ -115,6 +115,8 @@
 
           <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
           <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
+          <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
+          
     </head>
     <body>
         

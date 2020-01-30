@@ -34,7 +34,7 @@ class account_resister_Controller extends Controller
             'urgent_phone_number' => ['nullable','numeric','unique:cust_resisters','different:phone_number'],
             'password' => ['required','min:8','regex:/\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,}+\z/','unique:cust_resisters'],
             'password2' => 'required | same:password',
-            'kiyaku' => 'required',
+            
         ],[
 
             'kana_name.regex' => "カタカナで入力してください",
@@ -49,7 +49,7 @@ class account_resister_Controller extends Controller
             'password.regex' => "複雑なパスワードを入力してください",
             'password2.same' => "パスワードが一致しません",
             'password.unique' => "無効なパスワードです",
-            'kiyaku.required' => "利用規約に同意してください",
+        
         ]);
 
         $name = $request->username;
@@ -101,17 +101,33 @@ class account_resister_Controller extends Controller
  
         $keyword2 = $request->input('category');
 
+        $sort = $request->input('sort');
         $query = item::query();
-        
+        $inputsearch;
+
         if(!empty($keyword))
         {
             $query->where('item_name','like','%'.$keyword.'%')->orWhere('category_name','like','%'.$keyword.'%');
+            $inputsearch = $keyword;
 
         }elseif(!empty($keyword2)){
             $query->where('category_name','like','%'.$keyword2.'%');
+            $inputsearch = $keyword2;
         }
 
         
+        if(!empty($sort)){
+            if($sort == "new"){
+                $query->orderBy('created_at','asc');
+            }elseif($sort =="cheap"){
+                $query->orderBy('item_price','asc');
+
+            }elseif($sort == "expensive"){
+                $query->orderBy('item_price','desc');
+
+            }
+        }
+
         $item_list = $query->paginate(20);
         $item_category = item::select('category_name')->distinct()->get();
 
@@ -120,13 +136,13 @@ class account_resister_Controller extends Controller
             $otodoke = \Auth::user()->address2 . "へお届け";
             $ifLogin = "ログアウト";
             $link = "/logout";
-            return view('main',compact("user","otodoke","ifLogin","link","item_list","item_category"));
+            return view('main',compact("user","otodoke","ifLogin","link","item_list","item_category","inputsearch","keyword","keyword2"));
         }else {
             $ifLogin = "ログイン";
             $link = "/accountlogin";
             $user = "";
             $otodoke = "";
-            return view('main',compact("user","otodoke","ifLogin","link","item_list","item_category"));
+            return view('main',compact("user","otodoke","ifLogin","link","item_list","item_category","inputsearch","keyword","keyword2"));
         }
     }
 }
