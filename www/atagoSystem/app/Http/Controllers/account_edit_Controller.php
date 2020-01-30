@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers;
 use Illnminate\Validation\Roule;
-use Illuminate\Http\Request;
-use App\Models\cust_resister;
+use Illuminate\Http\quest;
+use App\Models\cust_Reresister;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use App\Models\item;
-
 
 //use App\Http\Requests\cust_resister_Request;
 use Redirect;
 use Validator;
-class account_resister_Controller extends Controller
+class account_edit_Controller extends Controller
 {
+
+    
 
     public function store(request $request)
 
@@ -51,6 +50,8 @@ class account_resister_Controller extends Controller
             'password.unique' => "無効なパスワードです",
             'kiyaku.required' => "利用規約に同意してください",
         ]);
+        
+       
 
         $name = $request->username;
         $kana = $request->kana_name;
@@ -89,45 +90,24 @@ class account_resister_Controller extends Controller
 
     }
 
-    public function getLogout(){
-        Auth::logout();
+    public function editer (){
 
-        return redirect('/');
-    }
+        $cust_resister = new cust_resister;
 
-    public function LoginCheck(Request $request){
-
-        $keyword = $request->input('search-text');
- 
-        $keyword2 = $request->input('category');
-
-        $query = item::query();
-        
-        if(!empty($keyword))
-        {
-            $query->where('item_name','like','%'.$keyword.'%')->orWhere('category_name','like','%'.$keyword.'%');
-
-        }elseif(!empty($keyword2)){
-            $query->where('category_name','like','%'.$keyword2.'%');
-        }
 
         
-        $item_list = $query->paginate(20);
-        $item_category = item::select('category_name')->distinct()->get();
-
-        if(Auth::check()){
-            $user = \Auth::user()->username;
-            $otodoke = \Auth::user()->address2 . "へお届け";
-            $ifLogin = "ログアウト";
-            $link = "/logout";
-            return view('main',compact("user","otodoke","ifLogin","link","item_list","item_category"));
-        }else {
-            $ifLogin = "ログイン";
-            $link = "/accountlogin";
-            $user = "";
-            $otodoke = "";
-            return view('main',compact("user","otodoke","ifLogin","link","item_list","item_category"));
-        }
+        $user = \Auth::user()->username;
+        $cust_resister->kana_name = $kana;
+        $cust_resister->password = $pass;
+        $cust_resister->email = $mail;
+        $cust_resister->email2 = $mail2;
+        $cust_resister->address_number = $zip;
+        $cust_resister->address1 = $pref;
+        $cust_resister->address2 = $city;
+        $cust_resister->address3 = $other;
+        $cust_resister->phone_number = $phone;
+        $cust_resister->urgent_phone_number = $phone2;
+        
     }
 }
 

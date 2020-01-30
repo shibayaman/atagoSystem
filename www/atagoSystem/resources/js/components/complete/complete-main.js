@@ -26,7 +26,7 @@ export default function Main() {
 
                 <p><a href="/accountlogin">ログイン</a></p>
 
-                
+                <p><a href="/accountedit">登録内容を確認</a></p>
             </div>
         <br></br>
         </div>

@@ -14,14 +14,12 @@ class CreateEmpResistersTable extends Migration
     public function up()
     {
         Schema::create('emp_resisters', function (Blueprint $table) {
-            $table->bigIncrements('emp_id',8);
-            $table->string('emp_name',50);
-            $table->string('emp_kana_name',50);
-            $table->string('user_name',50)->unique();
-            $table->string('password',20)->unique();
-            $table->string('mail_address',50)->unique();
+            $table->bigIncrements('id',8);
+            $table->string('username',20);
+            $table->string('kana_name',50);
+            $table->string('password')->unique();
+            $table->string('email',50)->unique();
             $table->integer('phone_number')->unique();
-            $table->string('title',20)->nullable();
             $table->timestamps();
         });
     }

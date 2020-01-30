@@ -29,7 +29,7 @@
 
            }
            
-           .account-resister-title {
+           .account-edit-title {
 
                 position:absolute;
                 top:30px;
@@ -78,21 +78,17 @@
                top:15px;
            }
            
-           .required, .any {
+           .account-view {
                position:absolute;
-               border-style:solid;
-               left:16%;
-               width:5em;
+               left:10%;
+               
                text-align:center;
            }
 
-           .required {
-                background-color:red;
-           }
 
-           .input-component {
+           .edit {
                position:relative;
-               right:-20%;
+               right:-30%;
            }
            .account-sub {
 
@@ -110,9 +106,10 @@
 
            .common-footer {
                position:relative;
-               background-color:black;
-               max-width:100%;
+               bottom:0;
+               width:100%;
                height:5em;
+               background-color:black;
            }
         </style>
 
@@ -127,22 +124,38 @@
             
             
             var id = @json($user->id);
-            var name = @json($user->usename);
-            var kana = @json($errors->first('kana_name'));
-            var mail = @json($errors->first('email'));
-            var mail2 = @json($errors->first('email2'));
-            var zip = @json($errors->first('address_number'));
-            var phone = @json($errors->first('phone_number'));
-            var phone2 = @json($errors->first('urgent_phone_number'));
-            var pass = @json($errors->first('password'));
-            var pass2 = @json($errors->first('password2'));
-            var kiyaku = @json($errors->first('kiyaku'));
+            var name = @json($user->username);
+            var kana = @json($user->kana_name);
+            var mail = @json($user->email);
+            var mail2 = @json($user->email2);
+            var zip = @json($user->address_number);
+            var pref = @json($user->address1);
+            var city = @json($user->address2);
+            var other = @json($user->address3);
+            var phone = @json($user->phone_number);
+            var phone2 = @json($user->urgent_phone_number);
+            var atagon = @json($user->atagon_flg);
 
 
-           
+           var fullAddress = $pref . $city . $other;
+
+            @if(!isset($mail2))
+                var mail2 = "設定されていません";
+            @endif
+
+            
+            @if(!isset($phone2))
+                var phone2 = "設定されていません";
+            @endif
+            
        </script>
 
         <script src="{{asset('/js/accountapp.js')}}"></script>
+
+    <footer class="common-footer">
+        <a href="/emplogin" className="emp" id="emp">企業の方はこちら</a>
+                
+    <footer>
 
        
     </body>
