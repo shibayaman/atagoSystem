@@ -19,40 +19,38 @@ export default function Main() {
             
             <div className="account">
 
-                <h1>アカウント情報</h1>
+                <br></br><h1>アカウント情報</h1>
                 <hr></hr><br></br>
 
                 <h2>あなたのユーザIDは　<font color="red">{id}</font>　です</h2>
                 <hr></hr><br></br>
 
-                <form action="/" method="post" className="account-form" encType="multipart/form-data">
+                <form action="/editdecision" method="get" className="account-form" encType="multipart/form-data">
                     
                     <input type="hidden" name="_token" value={ document.querySelector('meta[name="csrf-token"').getAttribute('content') } />
 
-                    <div><span className="account-view">    名前　：　{name}</span><span className="edit"><font color="black"><button>変更</button></font></span></div><br></br>
+                    <div><span className="account-view">名前</span><span className="edit-view">{name}</span> </div><br></br><br></br>
 
-                    <div><span className="account-view">フリガナ　：　{kana}</span><span className="edit"><font color="black"><button>変更</button></font></span></div><br></br>
-
-                    <hr></hr><br></br>
-
-                    <div><span className="account-view">メールアドレス　：　{mail}</span><span className="edit"><font color="black"><button>変更</button></font></span></div><br></br>
-
-                    <div><span className="account-view">緊急時のメールアドレス　：　{mail2}</span><span className="edit"><font color="black"><button>変更</button></font></span></div><br></br>
+                    <div><span className="account-view">フリガナ</span><span className="edit-view">{kana}</span> </div><br></br><br></br>
 
                     <hr></hr><br></br>
 
-                    <div><span className="account-view">住所　：　{pref + city + other}</span><span className="edit"><font color="black"><button>変更</button></font></span></div><br></br>
+                    <div><span className="account-view">メールアドレス</span><span className="edit-view">{mail}</span> </div><br></br><br></br>
+
+                    <div><span className="account-view">緊急時のメールアドレス</span><span className="edit-view">{mail2}</span> </div><br></br><br></br>
+
                     <hr></hr><br></br>
 
-                    <div><span className="account-view">電話番号　：　{phone}</span><span className="edit"><font color="black"><button>変更</button></font></span></div><br></br>
+                    <div><span className="account-view">住所</span><span className="edit-view">{pref + city + other}</span> </div><br></br>
+                    <hr></hr><br></br>
+
+                    <div><span className="account-view">電話番号</span><span className="edit-view">{phone}</span> </div><br></br><br></br>
         
-                    <div><span className="account-view">緊急時の電話番号　：　{phone2}</span><span className="edit"><font color="black"><button>変更</button></font></span></div><br></br>
+                    <div><span className="account-view">緊急時の電話番号</span><span className="edit-view">{phone2}</span> </div><br></br><br></br>
                     <hr></hr><br></br>
 
-                    <div><span className="account-view">Atagonプライム会員　</span><span className="edit"><font color="black"><input type="checkbox" checked={atagon}></input></font></span></div><br></br>
-                    <hr></hr><br></br>
-
-                    <div><input type="submit" className="account-sub" value="確定"></input></div>
+                    
+                    <div><button className="account-back" onclick="history.back()">戻る</button><input type="submit" className="account-sub" value="変更"></input></div>
                     
                     <br></br>
 

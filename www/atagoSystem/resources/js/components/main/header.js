@@ -28,7 +28,6 @@ export default function Header() {
 
                     <button type="submit" id="sub" >検索</button>
 
-                    
                 </form>
                 
                 <div className="account">
@@ -44,7 +43,7 @@ export default function Header() {
 
                     
                 </div>
-                
+                <div className="cart"><a href="#">カート</a></div>
                 <div className="toiawase"><a href="/toiawase">お問い合わせ</a></div>
 
                 <div className="loginName"><a href="/accountedit"><font color="red">{name}</font></a></div>

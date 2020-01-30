@@ -27,6 +27,8 @@ class CreateCustResistersTable extends Migration
             $table->string('phone_number')->unique();
             $table->string('urgent_phone_number')->unique()->nullable();
             $table->boolean('atagon_flg')->default(false);
+            $table->rememberToken();
+
             $table->timestamps();
         });
     }

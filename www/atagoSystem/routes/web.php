@@ -23,6 +23,11 @@ Route::get('/accountedit',function(){
     return view('accountedit',compact('user'));
 })->middleware('auth');
 
+Route::get('/editdecision',function(){
+    $user = \Auth::user();
+    return view('editdecision',compact('user'));
+})->middleware('auth');
+
 
 Route::get('/toiawase',function(){
     return view('toiawase');

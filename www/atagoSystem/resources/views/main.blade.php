@@ -12,13 +12,18 @@
 
         <!-- Styles -->
         <style>
+
             html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
                 margin: 0;
+                padding: 0;
+                height: 100%;
+            }
+
+            .wrapper {
+                min-height: 100vh;
+                position: relative;/*←相対位置*/
+                padding-bottom: 120px;/*←footerの高さ*/
+                box-sizing: border-box;
             }
 
            .search-header {
@@ -70,6 +75,11 @@
                width:20%;
            }
 
+           .sort {
+               position:absolute;
+               top:15px;
+               left:70%;
+           }
            .account {
                position:absolute;
                list-style:none;
@@ -158,7 +168,13 @@
                 font-weight:bold;
                 font-size:15px;
             }
-
+            
+            .cart {
+                position:absolute;
+               font-weight:bold;
+               right:250px;
+               top:15px;
+            }
            .toiawase {
                position:absolute;
                font-weight:bold;
@@ -166,14 +182,27 @@
                top:15px;
            }
 
-           .toiawase>a {
+           .toiawase>a, .cart>a {
                 text-decoration: none ;
                 color:white;
 
            }
+
+           .search-keyword {
+               position :relative;
+               top:3em;
+               left:30%;
+           }
            
-           .box {
-               position:relative;
+           
+            .cont {
+                position:relative;
+                align:center;
+                top:4em;
+            }
+
+            .box {
+               position:absolute;
                 padding: 0.5em 1em;
                 margin: 2em 0;
                 font-weight: bold;
@@ -181,8 +210,10 @@
                 background: #FFF;
                 border: solid 3px #6091d3;/*線*/
                 border-radius: 10px;/*角の丸み*/
-
-                width:10%;
+                width:12em;
+                left:2%;
+                top:25em;
+                
             }
 
             .context {
@@ -196,7 +227,7 @@
                 padding: 0;
             }
            .common-footer {
-               position:relative;
+               position:absolute;
                bottom:0;
                width:100%;
                height:5em;
@@ -211,7 +242,7 @@
     </head>
     <body>
         
-
+    <div class="wrapper">
         <div id = "main"></div>
        
         <script type="text/javascript">
@@ -221,6 +252,7 @@
             var linktext = @json($link);
             var aotodoke = @json($otodoke);
             var category = @json($item_category);
+            
 
             $(function(){
                 $("#account-list li").hover(function(){
@@ -237,8 +269,62 @@
 
         <script src="{{asset('/js/accountapp.js')}}"></script>
         
-        
+        <div class="search-keyword">
             
+            @if (isset($inputsearch))
+                @if ($item_list->total() > 0)
+                    <h2>キーワード「{{$inputsearch}}」の検索結果　：　{{$item_list->total()}}件ヒットしました</h2>
+
+                    <div>
+                        <form action="/">
+                            <input  type="hidden" name="searchtext" value= "{{ request()->input('search-text') }}">
+                            <input  type="hidden" name="searchtext" value= "{{ request()->input('category') }}">
+                            <input  type="hidden" name="searchtext" value= "{{ request()->input('sort') }}">
+
+                            <select name="sort">
+                            <option value="new">最新</option>
+                            <option value="cheap">価格の安い順</option>
+                            <option value="expensive">価格の高い順</option>
+
+                            </select>
+
+                            <input type="submit" value="並べ替える">
+                        </form>
+                    </div>
+                @else 
+                    <h2>「キーワード{{$inputsearch}}」に該当する商品はありません</h2>
+                @endif
+            @endif
+        </div>
+            
+
+
+        <p>  
+
+<div class="row justify-content-center">
+    
+    <table border="1" class="cont">     
+
+        <tr>
+
+        <?php $i = 0; ?>
+        @foreach($item_list as $items)
+
+            <?php $i += 1; ?>
+            <td width="300" height="00" align="center" background-color="white"><img src="{{{ $items->item_url }}}" ="center"><br><a href="#" name={{{ $items->item_name }}}>{{{ $items->item_name }}}</a></td>
+                
+            @if($i % 4 == 0)
+                </tr><tr>
+            @endif
+
+        @endforeach
+    </table>
+
+    
+</div><br>
+    
+</p>
+
         <div class="box">
 
             <p class="context">カテゴリ一覧</p>
@@ -248,40 +334,14 @@
         </div>
     
             
-            <p class="container">  
-
-                <div class="row justify-content-center">
-                    
-                    <table border="1">     
-
-                        <tr>
-
-                        <?php $i = 0; ?>
-                        @foreach($item_list as $items)
-
-                            <?php $i += 1; ?>
-                            <td width="200px"><img src="{{{ $items->item_url }}}"><br><a href="#">{{{ $items->item_name }}}</a></td>
-                                
-                            @if($i % 4 == 0)
-                                </tr><tr>
-                            @endif
-
-                        @endforeach
-                    </table>
-                
-                    
-                </div>
-
-                
-                    
-            </p>
         
-            <div class="row justify-content-center">{{ $item_list->appends(request()->input())->links() }}</div>
-               
-            <footer class="common-footer">
-                <a href="/emplogin" className="emp" id="emp">企業の方はこちら</a>
-                
-            <footer>
+        <br><br><div class="row justify-content-center">{{ $item_list->appends(request()->input())->links() }}</div>
 
+        <br>
+        <footer class="common-footer">
+            <a href="/emplogin" className="emp" id="emp">企業の方はこちら</a>
+            
+        <footer>
+<div>
     </body>
 </html>

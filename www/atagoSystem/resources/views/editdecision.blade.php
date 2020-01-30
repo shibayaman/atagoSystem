@@ -21,7 +21,7 @@
 
            }
            
-           .account-resister-title {
+           .editdecision-title {
 
                 position:absolute;
                 top:30px;
@@ -91,19 +91,13 @@
                background-color:yellow;
                font-weight:bold;
                color:black;
-               max-width:100px;
                height:50px;
                font-size:2em;
-           }
-
-           .account-sub[disabled]{
-               background-color:gray;
            }
            .vali {
                position:relative;
                right:-300px;
            }
-
 
            .common-footer {
                position:relative;
@@ -121,11 +115,23 @@
     </head>
     <body>
         
-        <div id = "accountresister-example"></div>
+        <div id = "editdecision-example"></div>
 
         <script>
             
             
+            var auth_name = @json($user->username);
+            var auth_kana = @json($user->kana_name);
+            var auth_email = @json($user->email);
+            var auth_email2 = @json($user->email2);
+            var auth_zip = @json($user->address_number);
+            var auth_pref = @json($user->address1);
+            var auth_city = @json($user->address2);
+            var auth_other = @json($user->address3);
+            var auth_phone = @json($user->phone_number);
+            var auth_urgent_phone = @json($user->urgent_phone_number);
+
+
             var name = @json($errors->first('username'));
             var kana = @json($errors->first('kana_name'));
             var mail = @json($errors->first('email'));
@@ -154,20 +160,6 @@
             $(function(){
                 $('.auto-search').click(function(){
                     AjaxZip3.zip2addr('address_number','','address1','address2');
-                });
-            });
-
-            $(function(){
-                $('#sub').attr('disabled','disabled');
-
-                $('#kiyaku').click(function(){
-                    
-                    if($(this).prop('checked') == false){
-                        $('#sub').prop("disabled",'disabled');
-                    }else{
-                        $('#sub').removeAttr('disabled');
-                    }
-                    
                 });
             });
        </script>
