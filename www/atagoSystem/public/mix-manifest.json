@@ -1,7 +1,10 @@
 {
     "/js/accountapp.js": "/js/accountapp.js",
     "/css/app.css": "/css/app.css",
-    "/js/purchasehistory.js": "/js/purchasehistory.js",
     "/css/purchasehistory.css": "/css/purchasehistory.css",
-    "/css/cart.css": "/css/cart.css"
+    "/css/cart.css": "/css/cart.css",
+    "/css/itemDetail.css": "/css/itemDetail.css",
+    "/js/cart.js": "/js/cart.js",
+    "/js/itemDetail.js": "/js/itemDetail.js",
+    "/js/purchasehistory.js": "/js/purchasehistory.js"
 }

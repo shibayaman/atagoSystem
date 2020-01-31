@@ -56,6 +56,8 @@ Route::get('/PurchaseHistory', function () {
     return view('PurchaseHistory');
 });
 
+Route::resource('items', 'ItemController')->only(['show']);
+
 Route::get('/foo', 'PurchaseHistoryController@get');
 
 Route::get('/purchase/cart', 'PurchaseController@showCart');

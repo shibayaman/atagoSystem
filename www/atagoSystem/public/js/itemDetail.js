@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -32661,21 +32661,10 @@ if (false) {} else {
 
 /***/ }),
 
-/***/ "./resources/js/cart.js":
-/*!******************************!*\
-  !*** ./resources/js/cart.js ***!
-  \******************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(/*! ./components/Cart.js */ "./resources/js/components/Cart.js");
-
-/***/ }),
-
-/***/ "./resources/js/components/Cart.js":
-/*!*****************************************!*\
-  !*** ./resources/js/components/Cart.js ***!
-  \*****************************************/
+/***/ "./resources/js/components/ItemDetail.js":
+/*!***********************************************!*\
+  !*** ./resources/js/components/ItemDetail.js ***!
+  \***********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -32687,7 +32676,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _cartResource_Item__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./cartResource/Item */ "./resources/js/components/cartResource/Item.js");
+/* harmony import */ var _main_header__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./main/header */ "./resources/js/components/main/header.js");
 
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
@@ -32703,11 +32692,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var Cart = function Cart() {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
+var ItemDetail = function ItemDetail(props) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({}),
       _useState2 = _slicedToArray(_useState, 2),
-      cart = _useState2[0],
-      setCart = _useState2[1];
+      item = _useState2[0],
+      setItem = _useState2[1];
 
   var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(document.querySelector('meta[name="csrf-token"').getAttribute('content')),
       _useState4 = _slicedToArray(_useState3, 2),
@@ -32721,7 +32710,7 @@ var Cart = function Cart() {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              url = '/purchase/api/cart';
+              url = '/api/items/' + itemId;
               _context.next = 3;
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(fetch(url));
 
@@ -32732,7 +32721,7 @@ var Cart = function Cart() {
 
             case 6:
               data = _context.sent;
-              setCart(data);
+              setItem(data);
 
             case 8:
             case "end":
@@ -32742,172 +32731,137 @@ var Cart = function Cart() {
       });
     })();
   }, []);
-
-  var updateAmount = function updateAmount(newItem) {
-    var newCart = cart.map(function (item) {
-      return item.id === newItem.id ? Object.assign({}, item, newItem) : item;
-    });
-    setCart(newCart);
-  };
-
-  var itemList = cart.map(function (item) {
-    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_cartResource_Item__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      key: item.id,
-      item: item,
-      token: token,
-      updateAmount: updateAmount
-    });
-  });
+  var detail = Object.keys(item).length ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "item-detail"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
+    src: item.item_url
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, item.item_name), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, item.item_price), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {
+    action: '/purchase/cart/' + item.item_number,
+    method: "post"
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    type: "hidden",
+    name: "_token",
+    value: token
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    type: "submit",
+    value: "\u30AB\u30FC\u30C8\u306B\u5165\u308C\u308B"
+  }))) : react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "\u8AAD\u307F\u8FBC\u307F\u4E2D");
   return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "cart"
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, "\u30AB\u30FC\u30C8"), itemList);
+    className: "page"
+  }, detail);
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Cart);
+/* harmony default export */ __webpack_exports__["default"] = (ItemDetail);
 
 if (document.getElementById('root')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_2___default.a.render(react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Cart, null), document.getElementById('root'));
+  react_dom__WEBPACK_IMPORTED_MODULE_2___default.a.render(react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(ItemDetail, null), document.getElementById('root'));
 }
 
 /***/ }),
 
-/***/ "./resources/js/components/cartResource/DropDown.js":
-/*!**********************************************************!*\
-  !*** ./resources/js/components/cartResource/DropDown.js ***!
-  \**********************************************************/
+/***/ "./resources/js/components/main/header.js":
+/*!************************************************!*\
+  !*** ./resources/js/components/main/header.js ***!
+  \************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Header; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
 
 
-
-var DropDown = function DropDown(props) {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
-    className: "item-amount",
-    value: props.amount,
-    onChange: function onChange(e) {
-      return props.updateAmount(parseInt(e.target.value));
-    }
+function Header() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
+    className: "search-header"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "/",
+    id: "logo"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: "../images/atagonlogo.png",
+    height: "40px"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    action: "/",
+    method: "get",
+    className: "search-form",
+    encType: "multipart/form-data"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "hidden",
+    name: "_token",
+    value: document.querySelector('meta[name="csrf-token"').getAttribute('content')
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+    id: "siborikomi"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: "1"
-  }, "1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: "2"
-  }, "2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: "3"
-  }, "3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: "4"
-  }, "4"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: "5"
-  }, "5"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: "6"
-  }, "6"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: "7"
-  }, "7"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: "8"
-  }, "8"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: "9"
-  }, "9"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: "10"
-  }, "10")));
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (DropDown);
-
-/***/ }),
-
-/***/ "./resources/js/components/cartResource/Item.js":
-/*!******************************************************!*\
-  !*** ./resources/js/components/cartResource/Item.js ***!
-  \******************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _DropDown__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./DropDown */ "./resources/js/components/cartResource/DropDown.js");
-
-
-
-
-
-var Item = function Item(props) {
-  var updateAmount = function updateAmount(val) {
-    var body, headers, res, data;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function updateAmount$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            body = JSON.stringify({
-              id: props.item.id,
-              amount: val
-            });
-            headers = {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json',
-              "X-CSRF-TOKEN": props.token
-            };
-            _context.next = 4;
-            return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(fetch('/purchase/api/cart', {
-              method: 'POST',
-              headers: headers,
-              body: body
-            }));
-
-          case 4:
-            res = _context.sent;
-            _context.next = 7;
-            return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(res.json());
-
-          case 7:
-            data = _context.sent;
-            props.updateAmount(data);
-
-          case 9:
-          case "end":
-            return _context.stop();
-        }
-      }
-    });
-  };
-
-  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "item"
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "item-img-container"
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
-    src: props.item.product.ITEM_URL
-  })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "item-desc-container"
-  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
-    className: "item-name"
-  }, props.item.product.ITEM_NAME), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
-    className: "item-price"
-  }, "\xA5 1,000"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_DropDown__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    amount: props.item.amount,
-    updateAmount: updateAmount
-  })));
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Item);
+    value: "all",
+    checked: true
+  }, "\u3059\u3079\u3066")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    name: "search-text",
+    id: "search-text",
+    placeholder: "\u691C\u7D22\u3057\u305F\u3044\u6587\u5B57\u5217\u3092\u5165\u529B"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    type: "submit",
+    id: "sub"
+  }, "\u691C\u7D22")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "account"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    id: "account-list"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "ul-style"
+  }, "\u30A2\u30AB\u30A6\u30F3\u30C8", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "sub-list triangle"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "/accountresister"
+  }, "\u30A2\u30AB\u30A6\u30F3\u30C8\u3092\u4F5C\u6210\u3059\u308B")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "/accountedit"
+  }, "\u30A2\u30AB\u30A6\u30F3\u30C8\u60C5\u5831\u3092\u78BA\u8A8D\u3059\u308B")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: linktext
+  }, login)))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "cart"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "#"
+  }, "\u30AB\u30FC\u30C8")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "toiawase"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "/toiawase"
+  }, "\u304A\u554F\u3044\u5408\u308F\u305B")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "loginName"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "/accountedit"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("font", {
+    color: "red"
+  }, name))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "aotodoke"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("font", {
+    color: "white"
+  }, aotodoke))));
+}
 
 /***/ }),
 
-/***/ 2:
+/***/ "./resources/js/itemDetail.js":
 /*!************************************!*\
-  !*** multi ./resources/js/cart.js ***!
+  !*** ./resources/js/itemDetail.js ***!
   \************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/shiba/Develop/ecc/atagoSystem/server/www/atagoSystem/resources/js/cart.js */"./resources/js/cart.js");
+__webpack_require__(/*! ./components/ItemDetail.js */ "./resources/js/components/ItemDetail.js");
+
+/***/ }),
+
+/***/ 3:
+/*!******************************************!*\
+  !*** multi ./resources/js/itemDetail.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! /Users/shiba/Develop/ecc/atagoSystem/server/www/atagoSystem/resources/js/itemDetail.js */"./resources/js/itemDetail.js");
 
 
 /***/ })

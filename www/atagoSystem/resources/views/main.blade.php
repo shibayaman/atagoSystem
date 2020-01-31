@@ -202,7 +202,7 @@
             }
 
             .box {
-               position:absolute;
+                position:absolute;
                 padding: 0.5em 1em;
                 margin: 2em 0;
                 font-weight: bold;
@@ -234,6 +234,16 @@
                background-color:black;
            }
 
+            .item-container {
+                margin-left: 12rem;
+            }
+
+            .item {
+                display: inline-block
+                ;
+                width: 25rem;
+                text-align: center;
+            }
         </style>
 
           <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -301,26 +311,12 @@
 
         <p>  
 
-<div class="row justify-content-center">
-    
-    <table border="1" class="cont">     
-
-        <tr>
-
-        <?php $i = 0; ?>
-        @foreach($item_list as $items)
-
-            <?php $i += 1; ?>
-            <td width="300" height="00" align="center" background-color="white"><img src="{{{ $items->item_url }}}" ="center"><br><a href="#" name={{{ $items->item_name }}}>{{{ $items->item_name }}}</a></td>
-                
-            @if($i % 4 == 0)
-                </tr><tr>
-            @endif
-
-        @endforeach
-    </table>
-
-    
+<div class="item-container">
+    @foreach($item_list as $item)
+        <div class='item'>
+            <a href="/items/{{ $item->item_number }}"><img src="{{ $item->item_url }}"><br>{{ $item->item_name }}</a>
+        </div>
+    @endforeach
 </div><br>
     
 </p>
