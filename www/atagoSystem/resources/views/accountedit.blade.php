@@ -80,6 +80,10 @@
                align:center;
            }
 
+           .edit-button {
+               position:absolute;
+               left:85%;
+           }
            .account-sub {
 
                background-color:yellow;
@@ -136,7 +140,8 @@
             var other = @json($user->address3);
             var phone = @json($user->phone_number);
             var phone2 = @json($user->urgent_phone_number);
-            var atagon = @json($user->atagon_flg);
+            var pass = @json($user->password);
+            
 
 
            var fullAddress = $pref . $city . $other;
