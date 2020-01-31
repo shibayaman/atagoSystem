@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use Illuminate\Http\Request;
 use App\Models\Cart;
 use App\Models\s_kanris;
@@ -17,16 +18,38 @@ class PurchaseController extends Controller
     return view('Cart');
   }
 
-  public function getCart() {
-    //仮ユーザ
+  public function addCart(Request $request) {
     $user = Auth::user();
 
-    $carts = Cart::with('product')->where('customer_id', $user->id)->get();
+    $safeValues = $request->validate([
+      'item_number' => 'required|integer|exists:items',
+      'amount' => 'required|integer|min:0'
+    ]);
+
+    if($oldCart = Cart::where('customer_id', $user->id)->where('product_id', $safeValues['item_number'])->first()) {
+      $oldCart->amount += $safeValues['amount'];
+      $oldCart->save();
+
+      return view('cart');
+    }
+
+    $cart = new Cart();
+    $cart->customer_id = $user->id;
+    $cart->product_id = $safeValues['item_number'];
+    $cart->amount = $safeValues['amount'];
+    $cart->save();
+
+    return view('cart');
+  }
+
+  public function getCart() {
+    $user = Auth::user();
+
+    $carts = Cart::with('item')->where('customer_id', $user->id)->get();
     return($carts);
   }
 
   public function updateCart(Request $request) {
-    //仮ユーザ
     $user = Auth::user();
 
     $validated = $request->validate([

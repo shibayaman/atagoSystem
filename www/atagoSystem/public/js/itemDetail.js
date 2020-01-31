@@ -32703,6 +32703,11 @@ var ItemDetail = function ItemDetail(props) {
       token = _useState4[0],
       setToken = _useState4[1];
 
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(1),
+      _useState6 = _slicedToArray(_useState5, 2),
+      amount = _useState6[0],
+      setAmount = _useState6[1];
+
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     (function _callee() {
       var url, res, data;
@@ -32731,21 +32736,37 @@ var ItemDetail = function ItemDetail(props) {
       });
     })();
   }, []);
+
+  var handleAmountChange = function handleAmountChange(e) {
+    if (e.target.value > 0) {
+      setAmount(e.target.value);
+    }
+  };
+
   var detail = Object.keys(item).length ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "item-detail"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
     src: item.item_url
   }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, item.item_name), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, item.item_price), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {
-    action: '/purchase/cart/' + item.item_number,
+    action: '/purchase/cart',
     method: "post"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
     type: "hidden",
     name: "_token",
     value: token
   }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    type: "hidden",
+    name: "item_number",
+    value: item.item_number
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    type: "number",
+    name: "amount",
+    value: amount,
+    onChange: handleAmountChange
+  }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
     type: "submit",
     value: "\u30AB\u30FC\u30C8\u306B\u5165\u308C\u308B"
-  }))) : react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "\u8AAD\u307F\u8FBC\u307F\u4E2D");
+  }))) : react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "\u8AAD\u307F\u8FBC\u307F\u4E2D...");
   return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "page"
   }, detail);

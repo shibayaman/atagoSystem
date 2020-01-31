@@ -32753,7 +32753,7 @@ var Cart = function Cart() {
   var itemList = cart.map(function (item) {
     return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_cartResource_Item__WEBPACK_IMPORTED_MODULE_3__["default"], {
       key: item.id,
-      item: item,
+      cart: item,
       token: token,
       updateAmount: updateAmount
     });
@@ -32812,7 +32812,9 @@ var DropDown = function DropDown(props) {
     value: "9"
   }, "9"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
     value: "10"
-  }, "10")));
+  }, "10"), props.amount > 10 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: props.amount
+  }, props.amount) : ''));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (DropDown);
@@ -32846,7 +32848,7 @@ var Item = function Item(props) {
         switch (_context.prev = _context.next) {
           case 0:
             body = JSON.stringify({
-              id: props.item.id,
+              id: props.cart.item.item_number,
               amount: val
             });
             headers = {
@@ -32883,15 +32885,15 @@ var Item = function Item(props) {
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "item-img-container"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
-    src: props.item.product.ITEM_URL
+    src: props.cart.item.item_url
   })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "item-desc-container"
   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
     className: "item-name"
-  }, props.item.product.ITEM_NAME), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
+  }, props.cart.item.item_name), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
     className: "item-price"
-  }, "\xA5 1,000"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_DropDown__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    amount: props.item.amount,
+  }, props.cart.item.item_price), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_DropDown__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    amount: props.cart.amount,
     updateAmount: updateAmount
   })));
 };

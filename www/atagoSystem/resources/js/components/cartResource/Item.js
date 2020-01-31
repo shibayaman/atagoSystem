@@ -5,7 +5,7 @@ import DropDown from './DropDown';
 const Item = (props) => {
   const updateAmount = async (val) => {
     const body = JSON.stringify({
-      id: props.item.id,
+      id: props.cart.item.item_number,
       amount: val
     });
 
@@ -28,12 +28,12 @@ const Item = (props) => {
   return (
     <div className="item">
       <div className="item-img-container">
-        <img src={props.item.product.ITEM_URL}/>
+        <img src={props.cart.item.item_url}/>
       </div>
       <div className="item-desc-container">
-        <p className="item-name">{props.item.product.ITEM_NAME}</p>
-        <p className="item-price">¥ 1,000</p>
-        <DropDown amount={props.item.amount} updateAmount={updateAmount}/>
+        <p className="item-name">{props.cart.item.item_name}</p>
+        <p className="item-price">{props.cart.item.item_price}</p>
+        <DropDown amount={props.cart.amount} updateAmount={updateAmount}/>
       </div>
     </div>
   )

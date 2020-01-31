@@ -28,7 +28,7 @@ const Cart = () => {
   const itemList = cart.map(item => 
     <Item
       key={item.id}
-      item={item}
+      cart={item}
       token={token}
       updateAmount={updateAmount}/>
     );

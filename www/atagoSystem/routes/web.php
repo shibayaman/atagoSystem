@@ -70,6 +70,8 @@ Route::get('/purchase/completed', 'PurchaseController@showCompleted');
 
 Route::get('/purchase/api/cart', 'PurchaseController@getCart');
 
+Route::post('/purchase/cart', 'PurchaseController@addCart');
+
 Route::post('/purchase/api/cart', 'PurchaseController@updateCart');
 
 Route::get('/purchase/api/order', 'PurchaseController@getOrder');

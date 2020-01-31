@@ -15,6 +15,8 @@ const DropDown = (props) => {
         <option value="8">8</option>
         <option value="9">9</option>
         <option value="10">10</option>
+        {props.amount > 10 ?
+         <option value={props.amount}>{props.amount}</option> : ''}
       </select>
     </div>
   );
