@@ -1,1 +1,0 @@
-mysql -u atago -p atago atago_system < "/docker-entrypoint-initdb.d/initialize.sql"
