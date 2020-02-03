@@ -23,10 +23,8 @@ Route::get('/accountedit',function(){
     return view('accountedit',compact('user'));
 })->middleware('auth');
 
-Route::get('/editdecision',function(){
-    $user = \Auth::user();
-    return view('editdecision',compact('user'));
-})->middleware('auth');
+Route::get('/editdecision','account_edit_Controller@editor')->middleware('auth');
+Route::post('editcontroll','account_edit_Controller@store')->middleware('auth');
 
 
 Route::get('/toiawase',function(){
